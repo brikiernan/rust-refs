@@ -1,4 +1,4 @@
-use pretty_sqlite::print_table;
+use pretty_sqlite::{print_select, print_table};
 use rusqlite::{Connection, params};
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -37,6 +37,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     }
 
     print_table(&conn, "person")?;
+
+    print_select(&conn, "SELECT sqlite_version()", ())?;
 
     Ok(())
 }
